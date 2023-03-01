@@ -28,3 +28,33 @@ def read():
     """)      
         
 
+
+
+def delete():
+    products = get_products()
+    print("Выберите продукт для удаление: ")
+    for ind, prod in enumerate(products):
+        print(f"{ind} => {prod['title']}")         
+    index = int(input())
+    products.pop(index)
+    update_products(products)
+
+def update():
+    products = get_products()
+    print("Выберите продукт для удаление: ")
+    for ind, prod in enumerate(products):
+        print(f"{ind} => {prod['title']}")         
+    index = int(input())
+    prod = products[index]
+    print(f"""
+Название: {prod['title']}
+цена: {prod['price']}
+""")
+    field = input("Какое поле хотите обновить? (title, price)\n")
+    value = input("Выведите значенние для этого роля:")
+    if field == 'title':
+        prod['title'] = value
+    elif field == 'price':
+        prod['price'] = float(value)
+    update_products(products)
+
